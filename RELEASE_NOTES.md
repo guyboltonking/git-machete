@@ -1,6 +1,9 @@
 # Release notes
 
-## New in git-machete 3.17.7
+## New in git-machete 3.18.0
+
+- added: `git machete completion bash|fish|zsh` command
+- removed: support and instructions for installing completion without using `git machete completion`
 
 ## New in git-machete 3.17.6
 

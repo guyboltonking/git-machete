@@ -9,6 +9,7 @@ short_docs: Dict[str, str] = {
     "advance": "Fast-forward merge one of children to the current branch, push it and then slide out the child",
     "anno": "Manage custom annotations",
     "clean": "Delete untracked and unmanaged branches and also optionally check out user's open GitHub PRs",
+    "completion": "Print out completion script for bash/fish/zsh",
     "config": "Display docs for the git machete configuration keys and environment variables",
     "delete-unmanaged": "Delete local branches that are not present in the definition file",
     "diff": "Diff current working directory or a given branch against its computed fork point",
@@ -242,6 +243,93 @@ long_docs: Dict[str, str] = {
         <b>Environment variables:</b>
            `GITHUB_TOKEN`
               GitHub API token.
+
+   """,
+    "completion": """
+        <b>Usage:</b><b>
+           git machete completion <subcommand></b>
+
+        where `<subcommand>` is one of: `anno-prs`, `checkout-prs`, `create-pr`, `retarget-pr`.
+
+        Creates, checks out and manages completion PRs while keeping them reflected in branch definition file.
+
+        <b>Subcommands:</b>
+           `anno-prs`:
+              Annotates the branches based on their corresponding completion PR numbers and authors.
+              Any existing annotations are overwritten for the branches that have an opened PR; annotations for the other branches remain untouched.
+              Equivalent to `git machete anno --sync-completion-prs`.
+              When the current user is <b>not</b> the owner of the PR associated with that branch, adds `rebase=no push=no` branch qualifiers used by `git machete traverse`,
+              so that you don't rebase or push someone else's PR by accident (see help for `traverse`).
+
+           `checkout-prs [--all | --by=<completion-login> | --mine | <PR-number-1> ... <PR-number-N>]`:
+ 
+              Check out the head branch of the given pull requests (specified by numbers or by a flag),
+              also traverse chain of pull requests upwards, adding branches one by one to git-machete and check them out locally.
+              Once the specified pull requests are checked out locally, annotate local branches with corresponding pull request numbers.
+              If only one PR has been checked out, then switch the local repository's HEAD to its head branch.
+              When the current user is <b>not</b> the owner of the PR associated with that branch, adds `rebase=no push=no` branch qualifiers used by `git machete traverse`,
+              so that you don't rebase or push someone else's PR by accident (see help for `traverse`).
+
+              <b>Options:</b>
+
+                 <b>--all</b>
+              Checkout all open PRs.
+
+                 <b>--by=<completion-login></b>
+
+              Checkout open PRs authored by the given completion user, where `<completion-login>` is the completion account name.
+
+                 <b>--mine</b>
+              Checkout open PRs for the current user associated with the completion token.
+
+              <b>Parameters:</b>
+
+              `<PR-number-1> ... <PR-number-N>`    Pull request numbers to checkout.
+
+           `create-pr [--draft]`:
+ 
+              Creates a PR for the current branch, using the upstream (parent) branch as the PR base.
+              Once the PR is successfully created, annotates the current branch with the new PR's number.
+
+              If `.git/info/description` file is present, its contents are used as PR description.
+              If `.git/info/milestone` file is present, its contents (a single number — milestone id) are used as milestone.
+              If `.git/info/reviewers` file is present, its contents (one completion login per line) are used to set reviewers.
+
+              <b>Options:</b>
+
+                 <b>--draft</b>
+              Creates the new PR as a draft.
+
+           `retarget-pr [-b|--branch=<branch>] [--ignore-if-missing]`:
+ 
+              Sets the base of the current (or specified) branch's PR to upstream (parent) branch, as seen by git machete (see `git machete show up`).
+
+              <b>Options:</b>
+
+                 <b>-b</b>, <b>--branch=<branch></b>
+
+              Specify the branch for which the associated PR base will be set to its upstream (parent) branch. The current branch is used if the option is absent.
+
+                 <b>--ignore-if-missing</b>
+
+              Ignore errors and quietly terminate execution if there is no PR opened for current (or specified) branch.
+
+           `sync`:
+ 
+              Synchronizes with the remote repository:
+
+                 * checks out open PRs for the current user associated with the completion token and also traverses the chain of pull requests upwards,
+                   adding branches one by one to git-machete and checks them out locally as well,
+
+                 * deletes unmanaged branches,
+
+                 * deletes untracked managed branches that have no downstream branch.
+
+              Equivalent of `git machete clean --checkout-my-completion-prs`.
+
+        <b>Environment variables (all subcommands):</b>
+           `completion_TOKEN`
+              completion API token.
 
    """,
     "config": """

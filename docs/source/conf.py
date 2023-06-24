@@ -49,7 +49,6 @@ templates_path = ['_templates']
 exclude_patterns = [
     'cli_help',
     'cli.rst',
-    'completion.rst',
     'description.rst',
     'learning_materials.rst',
     'github_api_access.rst',

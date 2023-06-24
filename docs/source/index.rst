@@ -7,9 +7,7 @@ Probably the sharpest git repository organizer & rebase/merge workflow automatio
   #. :ref:`description`
   #. :ref:`cli`
   #. :ref:`learning_materials`
-  #. :ref:`completion`
 
 .. include:: description.rst
 .. include:: cli.rst
 .. include:: learning_materials.rst
-.. include:: completion.rst

@@ -24,6 +24,7 @@ To get help via CLI run:
 .. include:: cli_help/anno.rst
 .. include:: cli_help/config.rst
 .. include:: cli_help/clean.rst
+.. include:: cli_help/completion.rst
 .. include:: cli_help/delete-unmanaged.rst
 .. include:: cli_help/diff.rst
 .. include:: cli_help/discover.rst

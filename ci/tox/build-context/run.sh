@@ -38,8 +38,10 @@ $PYTHON -m venv venv/bdist_wheel/
 
 . venv/sdist/bin/activate
 pip install dist/git-machete-*.tar.gz
-git machete --version
+git machete version
+git machete completion fish
 
 . venv/bdist_wheel/bin/activate
 pip install dist/git_machete-*.whl
-git machete --version
+git machete version
+git machete completion zsh

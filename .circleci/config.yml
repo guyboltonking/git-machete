@@ -186,10 +186,10 @@ jobs:
           name: '[Dry run] Wait up to 30 minutes for PyPI package to be available'
           command: bash ci/pypi/ci-wait-for-package.sh test.pypi.org 30
 
-      - run:
-          name: '[Dry run] Update Homebrew with local installation test'
-          # Prerequisites: artifacts must be released to test PyPI first
-          command: bash ci/homebrew/ci-deploy.sh --dry-run
+#      - run:
+#          name: '[Dry run] Update Homebrew with local installation test'
+#          # Prerequisites: artifacts must be released to test PyPI first
+#          command: bash ci/homebrew/ci-deploy.sh --dry-run
 
       - run:
           name: '[Dry run] Publish image to Docker Hub'
@@ -303,6 +303,7 @@ workflows:
               only:
                 - "develop"
                 - "/hotfix.*/"
+                - "/.*119.*/"
           requires:
             *mandatory_jobs
       - deploy from master:

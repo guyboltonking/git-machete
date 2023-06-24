@@ -50,6 +50,10 @@ cat ../python3-git-machete_*.dsc
 cat ../python3-git-machete_*_source.buildinfo
 cat ../python3-git-machete_*_source.changes
 tar tvf ../python3-git-machete_*.tar.gz
+if ! tar tvf ../python3-git-machete_*.tar.gz | grep 'completion/'; then
+  echo "shell completion is not available in runtime, aborting"
+  exit 1
+fi
 
 envsubst '$LAUNCHPAD_USERNAME' < /dput.cf.envsubst | tee /etc/dput.cf
 if [[ $DO_DPUT == true ]]; then

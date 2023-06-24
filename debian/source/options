@@ -5,7 +5,6 @@ tar-ignore = build
 tar-ignore = ChangeLog
 tar-ignore = ci
 tar-ignore = .circleci
-tar-ignore = completion
 tar-ignore = CONTRIBUTING.md
 tar-ignore = .coverage
 tar-ignore = dist
