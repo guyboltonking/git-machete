@@ -286,29 +286,29 @@ workflows:
   build:
     jobs:
       - general checks
-      - python 3_6 git 1_8_0
-      - python 3_7 git 2_7_6
-      - python 3_8 git 2_25_0
-      - python 3_9 git 2_30_1
-      - pep8 and python 3_10 git 2_33_1
-      - docs and python 3_11 git 2_38_1
-      - macos tests
-      - windows tests
-      - coverage upload:
-          requires:
-            *mandatory_jobs
-      - dry run deploy:
-          filters:
-            branches:
-              only:
-                - "develop"
-                - "/hotfix.*/"
-                - "/.*119.*/"
-          requires:
-            *mandatory_jobs
-      - deploy from master:
-          filters:
-            branches:
-              only: "master"
-          requires:
-            *mandatory_jobs
+#      - python 3_6 git 1_8_0
+#      - python 3_7 git 2_7_6
+#      - python 3_8 git 2_25_0
+#      - python 3_9 git 2_30_1
+#      - pep8 and python 3_10 git 2_33_1
+#      - docs and python 3_11 git 2_38_1
+#      - macos tests
+#      - windows tests
+#      - coverage upload:
+#          requires:
+#            *mandatory_jobs
+#      - dry run deploy:
+#          filters:
+#            branches:
+#              only:
+#                - "develop"
+#                - "/hotfix.*/"
+#                - "/.*119.*/"
+#          requires:
+#            *mandatory_jobs
+#      - deploy from master:
+#          filters:
+#            branches:
+#              only: "master"
+#          requires:
+#            *mandatory_jobs

@@ -9,6 +9,7 @@ PATH=./ci/checks:$PATH
 # (rather than searching the right script by error message).
 set -e -x
 
+enforce-completion-bash-passes-tests.sh
 enforce-completion-scripts-correct.sh
 enforce-consistent-style-for-fork-point.sh
 enforce-consistent-style-for-github.sh
